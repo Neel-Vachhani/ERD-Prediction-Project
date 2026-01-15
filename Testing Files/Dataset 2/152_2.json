@@ -1,0 +1,83 @@
+{
+  "erd_id": "152_2.png",
+  "comment": { "flags": [] },
+  "entities": [
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": ["region_id"],
+      "attributes": ["Name", "population"]
+    },
+    {
+      "name": "game sales",
+      "kind": "weak_entity",
+      "primary_keys": ["region_id", "game_rank"],
+      "attributes": ["sales"]
+    },
+    {
+      "name": "Platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["platform_name", "introductory_price_us", "units_sold", "developer_id"]
+    },
+    {
+      "name": "video_game",
+      "kind": "entity",
+      "primary_keys": ["rank"],
+      "attributes": ["Name", "platform_id", "year", "genre", "publisher_id"]
+    },
+    {
+      "name": "Developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["Name", "Headquarters"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "from",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "region",      "cardinality": "1M" },
+        { "name": "game sales",  "cardinality": "0M" }
+      ]
+    },
+    {
+      "name": "has1",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "game sales",  "cardinality": "1M" },
+        { "name": "video_game",  "cardinality": "11" }
+      ]
+    },
+    {
+      "name": "has2",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "Platform",    "cardinality": "1M" },
+        { "name": "video_game",  "cardinality": "1M" }
+      ]
+    },
+    {
+      "name": "owns",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "Developer",   "cardinality": "11" },
+        { "name": "Platform",    "cardinality": "0M" }
+      ]
+    },
+    {
+      "name": "publish",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "Developer",   "cardinality": "11" },
+        { "name": "video_game",  "cardinality": "0M" }
+      ]
+    }
+  ]
+}

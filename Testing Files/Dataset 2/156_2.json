@@ -1,0 +1,82 @@
+{
+  "erd_id": "156_2.png",
+  "entities": [
+    {
+      "name": "games_sales",
+      "kind": "weak_entity",
+      "primary_keys": ["game_rank", "region_id"],
+      "attributes": ["sales"]
+    },
+    {
+      "name": "video_game",
+      "kind": "entity",
+      "primary_keys": ["rank"],
+      "attributes": ["name", "year", "genre"]
+    },
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["platform_name", "introductory_price", "units_sold"]
+    },
+    {
+      "name": "Region",
+      "kind": "entity",
+      "primary_keys": ["region_id"],
+      "attributes": ["name", "population"]
+    },
+    {
+      "name": "Developer",
+      "kind": "entity",
+      "primary_keys": ["developer_id"],
+      "attributes": ["name", "headquarters"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "tracks sales of",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "games_sales", "cardinality": "1M" },
+        { "name": "video_game",  "cardinality": "01" }
+      ]
+    },
+    {
+      "name": "sold in",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "games_sales", "cardinality": "01" },
+        { "name": "Region",      "cardinality": "1M" }
+      ]
+    },
+    {
+      "name": "released on",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "video_game", "cardinality": "01" },
+        { "name": "platform",   "cardinality": "1M" }
+      ]
+    },
+    {
+      "name": "published by",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "video_game", "cardinality": "0M" },
+        { "name": "Developer",  "cardinality": "01" }
+      ]
+    },
+    {
+      "name": "developed by",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "platform",  "cardinality": "0M" },
+        { "name": "Developer", "cardinality": "01" }
+      ]
+    }
+  ]
+}

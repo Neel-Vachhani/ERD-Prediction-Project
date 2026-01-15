@@ -1,0 +1,83 @@
+{
+  "erd_id": "159_2.png",
+  "comment": { "flags": [] },
+  "entities": [
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["platform_name", "introductory_price", "units_sold"]
+    },
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "headquarters"]
+    },
+    {
+      "name": "video game",
+      "kind": "entity",
+      "primary_keys": ["rank"],
+      "attributes": ["name", "year", "genre"]
+    },
+    {
+      "name": "game sales",
+      "kind": "entity",
+      "primary_keys": ["region_id", "game_rank"],
+      "attributes": ["sales"]
+    },
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "develop",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "platform",  "cardinality": "1M" },
+        { "name": "developer", "cardinality": "11" }
+      ]
+    },
+    {
+      "name": "on",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "platform",   "cardinality": "11" },
+        { "name": "video game", "cardinality": "1M" }
+      ]
+    },
+    {
+      "name": "publish",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "video game", "cardinality": "1M" },
+        { "name": "developer",  "cardinality": "11" }
+      ]
+    },
+    {
+      "name": "sale",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "game sales", "cardinality": "1M" },
+        { "name": "video game", "cardinality": "1M" }
+      ]
+    },
+    {
+      "name": "in",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "game sales", "cardinality": "1M" },
+        { "name": "region",     "cardinality": "1M" }
+      ]
+    }
+  ]
+}

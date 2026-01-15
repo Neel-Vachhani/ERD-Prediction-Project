@@ -1,0 +1,87 @@
+{
+  "erd_id": "145_2.png",
+  "comment": {
+    "flags": [
+      {
+        "code": "WEAK_ENTITY_NO_IDENT_REL",
+        "target_type": "entity",
+        "target_name": "Video Game"
+      },
+      {
+        "code": "CARDINALITY_GLYPH_CONFILCT",
+        "target_type": "relationship",
+        "target_name": "has2"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "name": "Video Game",
+      "kind": "weak_entity",
+      "primary_keys": ["rank"],
+      "attributes": ["genre", "year", "platform id", "publisher id", "name"]
+    },
+    {
+      "name": "Developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["headquarter", "name"]
+    },
+    {
+      "name": "Game Sales",
+      "kind": "entity",
+      "primary_keys": ["video game name"],
+      "attributes": ["sales", "region id", "game rank"]
+    },
+    {
+      "name": "Platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["platform name", "intro price us", "developer id", "units sold"]
+    },
+    {
+      "name": "Region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "has",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Video Game", "cardinality": "01"},
+        {"name": "Game Sales", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "play",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Platform", "cardinality": "01"},
+        {"name": "Video Games", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "publishes",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+         {"name": "Developer", "cardinality": "01"},
+        {"name": "Video Game", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "has2",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Platform", "cardinality": "UNC"},
+        {"name": "Region", "cardinality": "1M"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "erd_id": "153_2.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Platform",
+      "kind": "entity",
+      "primary_keys": ["Platform_id"],
+      "attributes": ["Platform_name", "Introductory_price", "Units_sold"]
+    },
+    {
+      "name": "Developer",
+      "kind": "entity",
+      "primary_keys": ["Id"],
+      "attributes": ["Name", "Headquarters"]
+    },
+    {
+      "name": "Video Game",
+      "kind": "entity",
+      "primary_keys": ["Rank"],
+      "attributes": ["Name", "Year", "Genre"]
+    },
+    {
+      "name": "Game Sales",
+      "kind": "entity",
+      "primary_keys": ["Region_id", "Game_Rank"],
+      "attributes": ["Sales"]
+    },
+    {
+      "name": "Region",
+      "kind": "entity",
+      "primary_keys": ["Id"],
+      "attributes": ["Name", "Population"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Develop",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Platform", "cardinality": "1M"},
+        {"name": "Developer",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "On",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Platform", "cardinality": "11"},
+        {"name": "Video Game",    "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "Publish",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Developer", "cardinality": "11"},
+        {"name": "Video Game",   "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "Sale",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Video Game", "cardinality": "1M"},
+        {"name": "Game Sales",    "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "In",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Game Sales", "cardinality": "1M"},
+        {"name": "Region", "cardinality": "1M"}
+      ]
+    }
+  ]
+}

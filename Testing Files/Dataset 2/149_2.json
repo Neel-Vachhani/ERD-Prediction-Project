@@ -1,0 +1,82 @@
+{
+    "erd_id": "149_2.png",
+    "comment": {
+        "flags": [
+            {
+                "code": "CARDINALITY_GLYPH_CONFLICT",
+                "target_type": "relationship",
+                "target_name": "game_sales"
+            },
+            {
+                "code": "CARDINALITY_GLYPH_CONFLICT",
+                "target_type": "relationship",
+                "target_name": "game_sales"
+            }
+        ]
+    },
+    "entities": [
+        {
+            "name": "region",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "population"]
+        },
+        {
+            "name": "video_game",
+            "kind": "entity",
+            "primary_keys": ["rank"],
+            "attributes": ["year", "name", "genre"]
+        },
+        {
+            "name": "platform",
+            "kind": "entity",
+            "primary_keys": ["platform id"],
+            "attributes": ["platform_name", "introductory_price", "units_sold"]
+        },
+        {
+            "name": "developer",
+            "kind": "entity",
+            "primary_keys": ["id"],
+            "attributes": ["name", "headquarters"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "game_sales",
+            "kind": "entity",
+            "attributes": ["sales"],
+            "involved_entities": [
+                {"name": "region", "cardinality": "UNC"},
+                {"name": "video_game", "cardinality": "UNC"}
+            ]
+        },
+        {
+            "name": "Develop",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "video_game", "cardinality": "1M"},
+                {"name": "developer", "cardinality": "11"}
+            ]
+        },
+        {
+            "name": "Produce",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "developer", "cardinality": "11"},
+                {"name": "platform", "cardinality": "1M"}
+            ]
+        },
+        {
+            "name": "has",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "video_game", "cardinality": "1M"},
+                {"name": "platform", "cardinality": "11"}
+            ]
+        }
+    ]
+
+}

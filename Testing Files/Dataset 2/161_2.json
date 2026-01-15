@@ -1,0 +1,82 @@
+{
+  "erd_id": "161_2.png",
+  "entities": [
+    {
+      "name": "games_sales",
+      "kind": "entity",
+      "primary_keys": ["game_rank", "region_id"],
+      "attributes": ["sales"]
+    },
+    {
+      "name": "video_game",
+      "kind": "weak_entity",
+      "primary_keys": ["rank"],
+      "attributes": ["name", "platform_id", "year", "genre", "publisher_id"]
+    },
+    {
+      "name": "region",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "population"]
+    },
+    {
+      "name": "platform",
+      "kind": "entity",
+      "primary_keys": ["platform_id"],
+      "attributes": ["platform_name", "introductory_price_us", "units_sold", "developer_id"]
+    },
+    {
+      "name": "developer",
+      "kind": "entity",
+      "primary_keys": ["id"],
+      "attributes": ["name", "headquarters"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Has",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "games_sales", "cardinality": "1M"},
+        {"name": "video_game", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Sold In",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "games_sales", "cardinality": "0M"},
+        {"name": "region", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Played On",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "1M"},
+        {"name": "platform", "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "Developed By",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "video_game", "cardinality": "1M"},
+        {"name": "developer", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Produced By",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "platform", "cardinality": "0M"},
+        {"name": "developer", "cardinality": "11"}
+      ]
+    }
+  ]
+}
