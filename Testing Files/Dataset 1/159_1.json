@@ -1,0 +1,120 @@
+{
+  "erd_id": "159_1.png",
+  "entities": [
+    {
+      "name": "driver",
+      "kind": "entity",
+      "primary_keys": ["license #", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "car",
+      "kind": "entity",
+      "primary_keys": ["vin_number"],
+      "attributes": ["make", "model", "year", "current_mile"]
+    },
+    {
+      "name": "customer",
+      "kind": "entity",
+      "primary_keys": ["customer_id"],
+      "attributes": ["name", "credit_card_num"]
+    },
+    {
+      "name": "recall",
+      "kind": "entity",
+      "primary_keys": ["make", "model", "year"],
+      "attributes": ["date", "discription"]
+    },
+    {
+      "name": "monthly_rent",
+      "kind": "weak_entity",
+      "primary_keys": ["license #", "state", "vin #"],
+      "attributes": ["date", "rent_paid"]
+    },
+    {
+      "name": "review",
+      "kind": "weak_entity",
+      "primary_keys": ["review_id"],
+      "attributes": ["description", "date_time", "star_rating"]
+    },
+    {
+      "name": "service",
+      "kind": "weak_entity",
+      "primary_keys": ["car_vin_number", "make", "model", "year"],
+      "attributes": ["service_date"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "own",
+      "kind": "relationship",
+      "attributes": [
+        "start_mileage"
+      ],
+      "involved_entities": [
+        {"name": "driver", "cardinality": "11"},
+        {"name": "car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "rent",
+      "kind": "identifying_relationship",
+      "attributes": ["start date of contract", "end date of contract"],
+      "involved_entities": [
+        {"name": "Driver (Renter)", "cardinality": "01"},
+        {"name": "Car",  "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "receive",
+      "kind": "identifying_relationship",
+      "attributes": ["start_date", "end_date"],
+      "involved_entities": [
+        {"name": "driver", "cardinality": "11"},
+        {"name": "car",  "cardinality": "11"},
+        {"name": "monthly_rent", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "write",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "customer", "cardinality": "11"},
+        {"name": "review", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "trip",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "customer", "cardinality": "11"},
+        {"name": "review",  "cardinality": "11"},
+        {"name": "driver",  "cardinality": "11"},
+        {"name": "car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "recall",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "service", "cardinality": "0M"},
+        {"name": "car",  "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "service",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "service", "cardinality": "0M"},
+        {"name": "recall",  "cardinality": "11"}
+      ]
+    }
+  ],
+  "comment": {
+    "flags": []
+  }
+}

@@ -1,0 +1,69 @@
+{
+    "erd_id": "163_1.png",
+    "entities": [
+      {
+        "name": "Driver",
+        "kind": "entity",
+        "primary_keys": ["License Number", "State"],
+        "attributes": ["Name", "Age"]
+      },
+      {
+        "name": "Car",
+        "kind": "entity",
+        "primary_keys": ["VIN Number"],
+        "attributes": ["Make", "Model", "Year", "Current Mileage"]
+      },
+      {
+        "name": "Customer",
+        "kind": "entity",
+        "primary_keys": ["Customer ID"],
+        "attributes": ["Name", "Credit Card Number"]
+      },
+      {
+        "name": "Recall",
+        "kind": "entity",
+        "primary_keys": ["Year", "Make", "Model"],
+        "attributes": ["Date", "Description"]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "Owns",
+        "kind": "relationship",
+        "attributes": ["Starting Mileage"],
+        "involved_entities": [
+          { "name": "Driver", "cardinality": "11" },
+          { "name": "Car", "cardinality": "11" }
+        ]
+      },
+      {
+        "name": "Rents",
+        "kind": "relationship",
+        "attributes": ["Starting Date", "Ending Date", "Monthly Installments", "Date"],
+        "involved_entities": [
+          { "name": "Driver", "cardinality": "11" },
+          { "name": "Car", "cardinality": "11" }
+        ]
+      },
+      {
+        "name": "Reviews",
+        "kind": "relationship",
+        "attributes": ["Description", "Date-Time", "Num of Stars"],
+        "involved_entities": [
+          { "name": "Customer", "cardinality": "1M" },
+          { "name": "Driver", "cardinality": "01" },
+          { "name": "Car", "cardinality": "01" }
+        ]
+      },
+      {
+        "name": "Has",
+        "kind": "identifying_relationship",
+        "attributes": [],
+        "involved_entities": [
+          { "name": "Car", "cardinality": "11" },
+          { "name": "Recall", "cardinality": "0M" }
+        ]
+      }
+    ]
+  }
+  

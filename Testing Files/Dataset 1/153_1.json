@@ -1,0 +1,138 @@
+{
+  "erd_id": "153_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Review",
+      "kind": "weak_entity",
+      "primary_keys": ["Review ID"],
+      "attributes": ["Description", "Date_Time", "Stars"]
+    },
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["License #", "State"],
+      "attributes": ["Name", "Age"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["Customer ID"],
+      "attributes": ["Name", "Credit Card #"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN #"],
+      "attributes": ["Make", "Model", "Year", "Current Mileage"]
+    },
+    {
+      "name": "Rent",
+      "kind": "weak_entity",
+      "primary_keys": ["Rent ID"],
+      "attributes": ["Start_Date", "End_Date"]
+    },
+    {
+      "name": "Monthly Rent",
+      "kind": "weak_entity",
+      "primary_keys": ["Rent ID"],
+      "attributes": ["Date", "Rent_Paid"]
+    },
+    {
+      "name": "Recall",
+      "kind": "entity",
+      "primary_keys": ["Make", "Model", "Year"],
+      "attributes": ["Date", "Description"]
+    },
+    {
+      "name": "Service",
+      "kind": "weak_entity",
+      "primary_keys": ["VIN #", "Make", "Model", "Year"],
+      "attributes": ["Service_Date"]
+    },
+    {
+      "name": "Own",
+      "kind": "weak_entity",
+      "primary_keys": ["Unique ID"],
+      "attributes": ["Start_Mile"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Write",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "11"},
+        {"name": "Review", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Receive",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Review", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Trip",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+	{"name": "Customer", "cardinality": "11"},
+	{"name": "Review", "cardinality": "11"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Own",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Own", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Rent",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "11"},
+        {"name": "Rent", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Pay",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Rent", "cardinality": "11"},
+        {"name": "Monthly Rent", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Recall",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "11"},
+        {"name": "Service", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Service",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Recall", "cardinality": "11"},
+        {"name": "Service", "cardinality": "0M"}
+      ]
+    }
+  ]
+}

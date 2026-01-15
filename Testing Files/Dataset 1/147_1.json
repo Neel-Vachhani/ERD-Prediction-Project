@@ -1,0 +1,76 @@
+{
+  "erd_id": "147_1.png",
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["license number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN number"],
+      "attributes": ["make", "model", "year", "current mileage"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer id"],
+      "attributes": ["name", "credit card number"]
+    },
+    {
+      "name": "Recall",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["date", "description"]
+    },
+    {
+      "name": "Rent contract",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["starting date", "ending date", "monthly installment date", "monthly installment amount"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Own",
+      "kind": "relationship",
+      "attributes": [
+        "starting mileage"
+      ],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car",    "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Rent",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car",    "cardinality": "01"},
+        {"name": "Rent contract",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Trip",
+      "kind": "relationship",
+      "attributes": [
+        "Time", "Date", "Review", "Stars"
+      ],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "0M"},
+        {"name": "Car",    "cardinality": "0M"},
+        {"name": "Customer",    "cardinality": "0M"}
+      ]
+    }
+  ],
+  "comment": {
+    "flags": [
+        {"code":"FK_DRAWN","target_type":"entity","target_name":"Car"}
+    ]
+  } 
+  
+}

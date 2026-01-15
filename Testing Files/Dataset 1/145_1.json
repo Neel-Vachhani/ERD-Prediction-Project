@@ -1,0 +1,100 @@
+{
+  "erd_id": "145_1.png",
+  "entities": [
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["License Number"],
+      "attributes": ["Name", "Age", "state"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN NUmber"],
+      "attributes": ["Current Mileage"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["customer id"],
+      "attributes": ["name", "credit card number"]
+    },
+    {
+      "name": "Review",
+      "kind": "entity",
+      "primary_keys": ["date-time"],
+      "attributes": ["description", "# of stars"]
+    },
+    {
+      "name": "Recall",
+      "kind": "entity",
+      "primary_keys": [],
+      "attributes": ["date", "description"]
+    },
+    {
+      "name": "Model",
+      "kind": "entity",
+      "primary_keys": ["make"],
+      "attributes": ["year"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Own",
+      "kind": "relationship",
+      "attributes": ["Starting mileage"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Rent",
+      "kind": "relationship",
+      "attributes": ["Date", "Start date", "End date", "rent installment mount"],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car",  "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Has",
+      "kind": "identifying relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Model", "cardinality": "UNC"},
+        {"name": "Recall",  "cardinality": "UNC"}
+      ]
+    },
+    {
+      "name": "belongs",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Mdoel", "cardinality": "UNC"},
+        {"name": "Car",  "cardinality": "UNC"}
+      ]
+    },
+    {
+      "name": "Ride",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Driver", "cardinality": "01"},
+        {"name": "Car",  "cardinality": "01"},
+        {"name": "Review",  "cardinality": "01"},
+        {"name": "Customer",  "cardinality": "01"}
+      ]
+    }
+  ],
+   "comment": {
+    "flags": [
+        {
+          "code":"FK_DRAWN",
+          "target_type":"entity",
+          "target_name":"Car"
+        }
+    ]
+  }
+
+}

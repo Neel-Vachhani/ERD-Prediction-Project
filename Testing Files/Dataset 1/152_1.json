@@ -1,0 +1,119 @@
+{
+  "erd_id": "152_1.png",
+  "comment": {
+    "flags": [
+    ]
+  },
+  "entities": [
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["Customer ID"],
+      "attributes": ["name", "Credit Card Number"]
+    },
+    {
+      "name": "Driver Renters",
+      "kind": "entity",
+      "primary_keys": ["License Number", "State"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Installments",
+      "kind": "weak_entity",
+      "primary_keys": ["payment_date"],
+      "attributes": ["number of installments"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN"],
+      "attributes": ["Make", "Model", "Year", "Current Mileage"]
+    },
+    {
+      "name": "Recalls",
+      "kind": "weak_entity",
+      "primary_keys": ["make", "model", "year"],
+      "attributes": ["Date & Time", "Description"]
+    },
+    {
+      "name": "Review",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["Description", "Date and Time", "Number of Stars"]
+    },
+    {
+      "name": "Driver Owners",
+      "kind": "entity",
+      "primary_keys": ["License Number", "State"],
+      "attributes": ["Name", "Age"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Hires",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "11"},
+        {"name": "Driver Renters", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "posts",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Customer", "cardinality": "0M"},
+        {"name": "Review", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "has1",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+         {"name": "Review", "cardinality": "UNC"},
+         {"name": "Driver Owners", "cardinality": "11"},
+         {"name": "Driver Renters", "cardinality": "11"}
+
+      ]
+    },
+    {
+      "name": "has2",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+         {"name": "Driver Renters", "cardinality": "11"},
+        {"name": "Installments", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Rents",
+      "kind": "elationship",
+      "attributes": ["Start Date", "End Date"],
+      "involved_entities": [
+         {"name": "Driver Renters", "cardinality": "0M"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": ["Starting Mileage"],
+      "involved_entities": [
+         {"name": "Driver Owners", "cardinality": "0M"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "has3",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+         {"name": "Car", "cardinality": "1M"},
+        {"name": "Recalls", "cardinality": "0M"}
+      ]
+    }
+
+  ]
+}

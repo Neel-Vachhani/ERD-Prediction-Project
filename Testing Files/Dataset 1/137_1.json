@@ -1,0 +1,90 @@
+{
+  "erd_id": "137_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Recall",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["Date", "Description"]
+    },
+    {
+      "name": "Make-Model-Year",
+      "kind": "entity",
+      "primary_keys": ["Make", "Model", "Year"],
+      "attributes": []
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN Number"],
+      "attributes": ["Current Milage"]
+    },
+    {
+      "name": "Customer",
+      "kind": "entity",
+      "primary_keys": ["Customer id"],
+      "attributes": ["Name", "Credit Card Number"]
+    },
+    {
+      "name": "Driver",
+      "kind": "entity",
+      "primary_keys": ["License number", "State"],
+      "attributes": ["Name", "Age"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Has",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Recall", "cardinality": "1M"},
+        {"name": "Make-Model-Year",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Type",
+      "kind": "relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Make-Model-Year", "cardinality": "11"},
+        {"name": "Car",    "cardinality": "1M"}
+      ]
+    },
+    {
+      "name": "Trip",
+      "kind": "relationship",
+      "attributes": ["Description", "Date-Time", "Number of Stars"],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "11"},
+        {"name": "Customer",    "cardinality": "11"},
+        {"name": "Driver",    "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": ["Starting Milage"],
+      "involved_entities": [
+        {"name": "Car",    "cardinality": "01"},
+        {"name": "Driver", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Rents",
+      "kind": "relationship",
+      "attributes": [
+        "Date of rent Installment", 
+        "Amount of rent installment", 
+        "Ending Date", 
+        "Starting Date"],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "01"},
+        {"name": "Driver",    "cardinality": "01"}
+      ]
+    }
+  ]
+}

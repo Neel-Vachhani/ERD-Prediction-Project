@@ -1,0 +1,55 @@
+{
+    "erd_id": "146_1.png",
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "customer",
+            "kind": "entity",
+            "primary_keys": ["customer_id"],
+            "attributes": ["name", "credit card number"]
+        },
+        {
+            "name": "driver",
+            "kind": "entity",
+            "primary_keys": ["customer_id", "state"],
+            "attributes": ["name", "age"]
+        },
+        {
+            "name": "car",
+            "kind": "entity",
+            "primary_keys": ["VIN number"],
+            "attributes": ["make", "model", "year", "current mileage"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "review",
+            "kind": "relationship",
+            "attributes": ["number of stars", "description", "date-time"],
+            "involved_entities": [
+                {"name": "customer", "cardinality": "UNC"},
+                {"name": "driver", "cardinality": "UNC"}
+            ]
+        },
+        {
+            "name": "own",
+            "kind": "relationship",
+            "attributes": ["starting mileage"],
+            "involved_entities": [
+                {"name": "driver", "cardinality": "01"},
+                {"name": "car", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "rents",
+            "kind": "relationship",
+            "attributes": ["date", "amount of installments paid", "start date", "end date"],
+            "involved_entities": [
+                {"name": "driver", "cardinality": "01"},
+                {"name": "car", "cardinality": "01"}
+            ]
+        }
+    ]
+}

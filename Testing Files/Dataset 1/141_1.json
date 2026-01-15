@@ -1,0 +1,84 @@
+{
+    "erd_id" : "141_1.png",
+    "entities" : [
+        {
+            "name" : "Rent Installment",
+            "kind" : "weak_entity",
+            "primary_keys" : [],
+            "attributes" : ["date", "amount"]
+        },
+        {
+            "name" : "Driver",
+            "kind" : "entity",
+            "primary_keys" : ["licence", "state"],
+            "attributes" : ["name", "age"]
+        },
+        {
+            "name" : "Customer",
+            "kind" : "entity",
+            "primary_keys" : ["id"],
+            "attributes" : ["name", "credit card"]
+        },
+        {
+            "name" : "Car",
+            "kind" : "entity",
+            "primary_keys" : ["VIN"],
+            "attributes" : ["make", "model", "year", "mileage"]
+        },
+        {
+            "name" : "Recall",
+            "kind" : "weak_entity",
+            "primary_keys" : [],
+            "attributes" : ["date", "description"]
+        }
+    ],
+    "relationships" : [
+        {
+            "name" : "Rents",
+            "kind" : "identifying_relationship",
+            "attributes" : ["contract end", "contract start"],
+            "involved_entities" : [
+                {"name" : "Rent Installment", "cardinality" : "0M"},
+                {"name" : "Car", "cardinality" : "01"},
+                {"name" : "Driver", "cardinality" : "11"}
+            ]
+        },
+        {
+            "name" : "Owns",
+            "kind" : "relationship",
+            "attributes" : ["starting mileage"],
+            "involved_entities" : [
+                {"name" : "Driver", "cardinality" : "11"},
+                {"name" : "Car", "cardinality" : "01"}
+            ]
+        },
+        {
+            "name" : "Reviews",
+            "kind" : "relationship",
+            "attributes" : ["stars", "date-time", "description"],
+            "involved_entities" : [
+                {"name" : "Driver", "cardinality" : "UNC"},
+                {"name" : "Customer", "cardinality" : "UNC"},
+                {"name" : "Car", "cardinality" : "UNC"}
+            ]
+        },
+        {
+            "name" : "Recalled",
+            "kind" : "identifying_relationship",
+            "attributes" : [],
+            "involved_entities" : [
+                {"name" : "Car", "cardinality" : "1M"},
+                {"name" : "Recal", "cardinality" : "0M"}
+            ]
+        }
+    ],
+    "comment" : {
+        "flags" : [
+            {
+                "code" : "CARDINALITY_GLYPH_CONTACT",
+                "target_type" : "relationship",
+                "target_name" : "Recalled"
+            }
+        ]
+    }
+}

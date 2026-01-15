@@ -1,0 +1,70 @@
+{
+  "erd_id": "149_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "driver",
+      "kind": "entity",
+      "primary_keys": ["license_number", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "car",
+      "kind": "entity",
+      "primary_keys": ["vin"],
+      "attributes": ["make", "model", "year", "current milage"]
+    },
+    {
+      "name": "installment",
+      "kind": "weak entity",
+      "primary_keys": ["payment_date"],
+      "attributes": ["payment_amount"]
+    },
+    {
+      "name": "customer",
+      "kind": "entity",
+      "primary_keys": ["customer_id"],
+      "attributes": ["name", "credit_cart"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "installment",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        { "name": "driver", "cardinality": "11" },
+        { "name": "isntallment", "cardinality": "0M" }
+      ]
+    },
+    {
+      "name": "owner",
+      "kind": "relationship",
+      "attributes": ["starting_milage"],
+      "involved_entities": [
+        { "name": "driver", "cardinality": "0M" },
+        { "name": "car", "cardinality": "11" }
+      ]
+    },
+    {
+      "name": "rent_contract",
+      "kind": "relationship",
+      "attributes": ["starting_date", "ending_date"],
+      "involved_entities": [
+        { "name": "driver", "cardinality": "0M" },
+        { "name": "car", "cardinality": "11" }
+      ]
+    },
+    {
+      "name": "review",
+      "kind": "relationship",
+      "attributes": ["description", "date_time", "num_starts"],
+      "involved_entities": [
+        { "name": "driver", "cardinality": "01" },
+        { "name": "customer", "cardinality": "01" }
+      ]
+    }
+  ]
+}

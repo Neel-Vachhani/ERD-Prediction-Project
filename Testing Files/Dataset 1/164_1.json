@@ -1,0 +1,91 @@
+{
+    "erd_id": "164_1.png",
+    "comment": {
+        "flags": [
+            {
+                "code": "WEAK_ENTITY_NO_IDENT_REL",
+                "target_type": "entity",
+                "target_name": "Recalls"
+            }
+        ]
+    },
+    "entities": [
+        {
+            "name": "Customer",
+            "kind": "entity",
+            "primary_keys": ["Customer ID"],
+            "attributes": ["Name", "Credit Card Number"]
+        },
+        {
+            "name": "Owner Driver",
+            "kind": "entity",
+            "primary_keys": ["License Number State"],
+            "attributes": ["Name", "Age"]
+        },
+        {
+            "name": "Renter Driver",
+            "kind": "entity",
+            "primary_keys": ["License Number State"],
+            "attributes": ["Name", "Age"]
+        },
+        {
+            "name": "Car",
+            "kind": "entity",
+            "primary_keys": ["VIN Number"],
+            "attributes": ["Make", "Model", "Year"]
+        },
+        {
+            "name": "Recalls",
+            "kind": "weak_entity",
+            "primary_keys": ["make-model-year"],
+            "attributes": ["Date", "Description"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "Trip",
+            "kind": "relationship",
+            "attributes": ["Review Date-Time", "Review Stars", "Review Description"],
+            "involved_entities": [
+                {"name": "Customer", "cardinality": "0M"},
+                {"name": "Owner Driver", "cardinality": "1M"}
+            ]
+        },
+        {
+            "name": "Trip",
+            "kind": "relationship",
+            "attributes": ["Review Date-Time", "Review Description", "Review Stars"],
+            "involved_entities": [
+                {"name": "Customer", "cardinality": "0M"},
+                {"name": "Renter Driver", "cardinality": "1M"}
+            ]
+        },
+        {
+            "name": "Own",
+            "kind": "relationship",
+            "attributes": ["Starting Mileage"],
+            "involved_entities": [
+                {"name": "Owner Driver", "cardinality": "01"},
+                {"name": "Car", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "Rent",
+            "kind": "relationship",
+            "attributes": ["Start Date", "End Date", "Payment Date", "Payment Amount"],
+            "involved_entities": [
+                {"name": "Renter Driver", "cardinality": "01"},
+                {"name": "Car", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "no_name1",
+            "kind": "relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Car", "cardinality": "01"},
+                {"name": "Recalls", "cardinality": "01"}
+            ]
+        }
+    ]
+}

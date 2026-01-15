@@ -1,0 +1,78 @@
+{
+    "erd_id": "143_1.png",
+    "comment": {
+        "flags": []
+    },
+    "entities": [
+        {
+            "name": "Customer",
+            "kind": "entity",
+            "primary_keys": ["customer ID"],
+            "attributes": ["name", "credit card number"]
+        },
+        {
+            "name": "Drive",
+            "kind": "entity",
+            "primary_keys": ["license number", "state"],
+            "attributes": ["name", "age"]
+        },
+        {
+            "name": "Car",
+            "kind": "entity",
+            "primary_keys": ["VIN number"],
+            "attributes": ["make", "model", "year", "current mileage"]
+        },
+        {
+            "name": "Rent Payments",
+            "kind": "weak_entity",
+            "primary_keys": ["date"],
+            "attributes": ["amount"]
+        },
+        {
+            "name": "Recall",
+            "kind": "weak_entity",
+            "primary_keys": ["date"],
+            "attributes": ["description"]
+        }
+    ],
+    "relationships": [
+        {
+            "name": "Review",
+            "kind": "relationship",
+            "attributes": ["description", "number of stars", "date-time"],
+            "involved_entities": [
+                {"name": "Customer", "cardinality": "UNC"},
+                {"name": "Driver", "cardinality": "UNC"},
+                {"name": "Car", "cardinality": "UNC"}
+            ]
+        },
+        {
+            "name": "Own",
+            "kind": "relationship",
+            "attributes": ["starting mileage"],
+            "involved_entities": [
+                {"name": "Driver", "cardinality": "01"},
+                {"name": "Car", "cardinality": "01"}
+            ]
+        },
+        {
+            "name": "Rent",
+            "kind": "identifying_relationship",
+            "attributes": ["starting date", "ending date"],
+            "involved_entities": [
+                {"name": "Rent Payments", "cardinality": "UNC"},
+                {"name": "Driver", "cardinality": "UNC"},
+                {"name": "Car", "cardinality": "UNC"}
+            ]
+        },
+        {
+            "name": "Manufacturing Defect",
+            "kind": "identifying_relationship",
+            "attributes": [],
+            "involved_entities": [
+                {"name": "Recall", "cardinality": "0M"},
+                {"name": "Car", "cardinality": "11"}
+            ]
+        }
+    ]
+}

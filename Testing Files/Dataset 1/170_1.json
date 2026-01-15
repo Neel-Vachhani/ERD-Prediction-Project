@@ -1,0 +1,115 @@
+{
+  "erd_id": "170_1.png",
+  "comment": {
+    "flags": []
+  },
+  "entities": [
+    {
+      "name": "Customers",
+      "kind": "entity",
+      "primary_keys": ["customer_id"],
+      "attributes": ["name", "credit_card_no"]
+    },
+    {
+      "name": "Reviews",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["description", "date-time", "stars"]
+    },
+    {
+      "name": "Car Owner",
+      "kind": "entity",
+      "primary_keys": ["license_no", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Car Renter",
+      "kind": "entity",
+      "primary_keys": ["license_no", "state"],
+      "attributes": ["name", "age"]
+    },
+    {
+      "name": "Installments",
+      "kind": "weak_entity",
+      "primary_keys": [],
+      "attributes": ["amount_or_payments", "payment_date"]
+    },
+    {
+      "name": "Car",
+      "kind": "entity",
+      "primary_keys": ["VIN number"],
+      "attributes": ["make", "model", "year", "current_mileage"]
+    },
+    {
+      "name": "Recalls",
+      "kind": "weak_entity",
+      "primary_keys": ["make", "model", "year", "date"],
+      "attributes": ["description"]
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Has1",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Customers", "cardinality": "11"},
+        {"name": "Reviews", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Has2",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Reviews", "cardinality": "0M"},
+        {"name": "Car Owner", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Has3",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Reviews", "cardinality": "0M"},
+        {"name": "Car Renter", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Has4",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car Renter", "cardinality": "11"},
+        {"name": "Installments", "cardinality": "01"}
+      ]
+    },
+    {
+      "name": "Owns",
+      "kind": "relationship",
+      "attributes": ["starting_mileage"],
+      "involved_entities": [
+        {"name": "Car Owner", "cardinality": "01"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    },
+    {
+      "name": "Has5",
+      "kind": "identifying_relationship",
+      "attributes": [],
+      "involved_entities": [
+        {"name": "Car", "cardinality": "1M"},
+        {"name": "Recalls", "cardinality": "0M"}
+      ]
+    },
+    {
+      "name": "Rents",
+      "kind": "relationship",
+      "attributes": ["start_date end_date"],
+      "involved_entities": [
+        {"name": "Car Renter", "cardinality": "01"},
+        {"name": "Car", "cardinality": "11"}
+      ]
+    }
+  ]
+}
