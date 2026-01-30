@@ -14,6 +14,15 @@ The primary goal of this tool is to bridge the gap between theoretical ERD desig
 
 ---
 
+## Tech Stack
+* **Language**: Python
+* **Data Analysis**: Pandas, NumPy, SciPy
+* **Machine Learning**: Scikit-learn (KNN Regressor, Cross-Validation)
+* **NLP**: NLTK, Gensim (Word2Vec), Sentence-Transformers (SBERT)
+* **Graph Processing**: NetworkX
+
+---
+
 ## Methodologies and Approaches
 
 The system implements four distinct approaches, ranging from traditional text-based models to sophisticated hybrid graph-text analysis.
@@ -48,15 +57,6 @@ A granular, component-based approach that calculates similarity by explicitly co
 
 ## Performance Evaluation
 Predictions are evaluated using **Root Mean Squared Error (RMSE)**. To ensure robustness and account for potential manual grading inconsistencies, the evaluation process excludes the worst 15% of predictions.
-
----
-
-## Tech Stack
-* **Language**: Python
-* **Data Analysis**: Pandas, NumPy, SciPy
-* **Machine Learning**: Scikit-learn (KNN Regressor, Cross-Validation)
-* **NLP**: NLTK, Gensim (Word2Vec), Sentence-Transformers (SBERT)
-* **Graph Processing**: NetworkX
 
 ---
 
